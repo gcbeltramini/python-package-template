@@ -1,3 +1,5 @@
+# Governance
+
 This is the governance file.
 
-Ref.: https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file
+Reference: <https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file>
