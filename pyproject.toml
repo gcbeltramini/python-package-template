@@ -11,7 +11,7 @@ authors = [
 ]
 readme = "README.md"
 license-files = [".github/LICENSE.md"]
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent"
