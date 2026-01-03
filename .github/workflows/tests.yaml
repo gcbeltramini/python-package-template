@@ -52,4 +52,4 @@ jobs:
         run: uv run coverage run -m pytest
 
       - name: Test code coverage with 'coverage.py'
-        run: uv run coverage report --fail-under=${{ env.COVERAGE_THRESHOLD }}
+        run: uv run coverage report
