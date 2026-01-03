@@ -1,0 +1,55 @@
+name: Run Tests
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    name: Test Suite
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+        # https://devguide.python.org/versions/
+          - "3.12"
+          - "3.13"
+          # - "3.14"
+          # - "3.15"
+
+    steps:
+      - uses: actions/checkout@v6
+
+      # https://docs.astral.sh/uv/guides/integration/github/#multiple-python-versions
+      - name: Install uv and set the Python version ${{ matrix.python-version }}
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+          python-version: ${{ matrix.python-version }}
+
+      # https://docs.astral.sh/uv/guides/integration/github/#syncing-and-running
+      - name: Install the project and its dependencies
+        run: uv sync --locked --all-extras --dev --verbose
+        # --locked  Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
+        # --frozen  Sync without updating the `uv.lock` file [env: UV_FROZEN=]
+        #
+        # In other words, `--frozen` ensures that the 'uv.lock' file is strictly followed, without
+        # making any changes to it during the sync process; while `--locked` checks that the `uv`
+        # lockfile is up-to-date. With `--locked`, the following error may occur:
+        #   The lockfile at `uv.lock` needs to be updated, but `--locked` was provided. To update the lockfile, run `uv lock`.
+        #
+        # Using `--locked` is equivalent to running `uv lock --check` before syncing, because this
+        # command checks if the `uv` lockfile 'uv.lock' is up-to-date. The error message is similar:
+        #   The lockfile at `uv.lock` needs to be updated, but `--check` was provided. To update the lockfile, run `uv lock`.
+
+      - name: Run 'ruff' for linting
+        run: uv run ruff check --output-format=github .
+
+      - name: Run unit tests with 'pytest' and measure code coverage with 'coverage.py'
+        run: uv run coverage run -m pytest
+
+      - name: Test code coverage with 'coverage.py'
+        run: uv run coverage report

@@ -1,20 +1,33 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=80", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "my_package"
+name = "my-package"
 version = "0.1.0"
 description = "A minimal Python package template."
-authors = [
-    { name = "Guilherme Beltramini", email = "guilherme.beltramini@example.com" }
-]
+authors = [{ name = "John Doe", email = "john.doe@example.com" }]
 readme = "README.md"
-license = { file = "LICENSE" }
-requires-python = ">=3.8"
+license-files = [".github/LICENSE.md"]
+requires-python = ">=3.12"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent"
+    "Operating System :: OS Independent",
 ]
 dependencies = []
+
+[dependency-groups]
+dev = [
+    "coverage>=7",
+    "pytest>=8",
+    "ruff<1",
+]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "--showlocals"
+testpaths = ["tests"]
+
+[tool.coverage.report]
+precision = 1
+fail_under = 95
