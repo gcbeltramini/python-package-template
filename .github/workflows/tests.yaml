@@ -42,7 +42,7 @@ jobs:
         #   The lockfile at `uv.lock` needs to be updated, but `--locked` was provided. To update the lockfile, run `uv lock`.
         #
         # Using `--locked` is equivalent to running `uv lock --check` before syncing, because this
-        # command checks if the uv lockfile 'uv.lock' is up-to-date. The error message is similar:
+        # command checks if the `uv` lockfile 'uv.lock' is up-to-date. The error message is similar:
         #   The lockfile at `uv.lock` needs to be updated, but `--check` was provided. To update the lockfile, run `uv lock`.
 
       - name: Run 'ruff' for linting
