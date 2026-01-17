@@ -32,7 +32,7 @@ jobs:
 
       # https://docs.astral.sh/uv/guides/integration/github/#syncing-and-running
       - name: Install the project and its dependencies
-        run: uv sync --locked --all-extras --dev --verbose
+        run: uv sync --locked --all-extras --verbose
         # --locked  Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
         # --frozen  Sync without updating the `uv.lock` file [env: UV_FROZEN=]
         #

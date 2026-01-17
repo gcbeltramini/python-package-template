@@ -16,6 +16,11 @@ classifiers = [
 ]
 dependencies = []
 
+[project.optional-dependencies]
+functional = [
+    "toolz>=0.12",
+]
+
 [dependency-groups]
 dev = [
     "coverage>=7",
