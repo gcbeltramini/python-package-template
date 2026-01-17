@@ -65,12 +65,12 @@ If you update the code, restart the Jupyter kernel in the Jupyter notebook to us
 >   If it's not, the following error will occur:
 >
 >   ```text
->   The lockfile at `uv.lock` needs to be updated, but `--locked` was provided. To > update the lockfile, run `uv lock`.
+>   The lockfile at `uv.lock` needs to be updated, but `--locked` was provided. To update the lockfile, run `uv lock`.
 >   ```
 >
 >   In that case, run `uv lock` to update the lockfile.
 >
->   Using `--locked` is equivalent to running `uv lock --check` before syncing, > because this
+>   Using `--locked` is equivalent to running `uv lock --check` before syncing, because this
 >   command checks if the `uv` lockfile `uv.lock` is up-to-date. The error message is similar.
 
 - Run `ruff` for linting: `uv run ruff check .`
