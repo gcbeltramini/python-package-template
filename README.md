@@ -2,12 +2,28 @@
 
 A minimal Python package template.
 
+- [python-package-template](#python-package-template)
+  - [Usage](#usage)
+    - [Terminal](#terminal)
+    - [Jupyter notebook](#jupyter-notebook)
+  - [Development](#development)
+
 ## Usage
 
-Install the project and its dependencies: `uv sync --frozen --all-extras --dev`
+Install the project and its dependencies: `uv sync --frozen --all-extras`
 
-This will create or update the Python venv folder `.venv`, using the Python version from file
-`.python-version`, and the dependencies from file `uv.lock`.
+> [!NOTE]
+>
+> - This will create or update the Python venv folder `.venv`, using the Python version from file
+>   `.python-version`, and the dependencies from file `uv.lock`.
+> - `--all-extras` includes all optional dependencies, listed under `optional-dependencies` in file
+>   `pyproject.toml` (<https://docs.astral.sh/uv/concepts/projects/dependencies/#optional-dependencies>)
+> - By default, `uv` includes the `dev` dependency group in the environment (e.g., during `uv run`
+>   or `uv sync`), which is defined under `dependency-groups` in file `pyproject.toml`, so the
+>   parameter `--dev` is not necessary
+>   (<https://docs.astral.sh/uv/concepts/projects/dependencies/#development-dependencies>;
+>   <https://docs.astral.sh/uv/concepts/projects/dependencies/#default-groups>)
+> - `--frozen` will sync the venv without updating the `uv.lock` file
 
 ### Terminal
 
@@ -40,20 +56,22 @@ If you update the code, restart the Jupyter kernel in the Jupyter notebook to us
 
 ## Development
 
-- Install the project and its dependencies: `uv sync --locked --all-extras --dev --verbose`
+- Install the project and its dependencies: `uv sync --locked --all-extras --verbose`
 
-  - This will create or update the Python `venv` folder `.venv`.
-  - The parameter `--locked` asserts that the `uv.lock` will remain unchanged and is up-to-date.
-    If it's not, the following error will occur:
-
-    ```text
-    The lockfile at `uv.lock` needs to be updated, but `--locked` was provided. To update the lockfile, run `uv lock`.
-    ```
-
-    In that case, run `uv lock` to update the lockfile.
-
-    Using `--locked` is equivalent to running `uv lock --check` before syncing, because this
-    command checks if the `uv` lockfile `uv.lock` is up-to-date. The error message is similar.
+> [!NOTE]
+>
+> - This will create or update the Python `venv` folder `.venv`.
+> - The parameter `--locked` asserts that the `uv.lock` will remain unchanged and is up-to-date.
+>   If it's not, the following error will occur:
+>
+>   ```text
+>   The lockfile at `uv.lock` needs to be updated, but `--locked` was provided. To update the lockfile, run `uv lock`.
+>   ```
+>
+>   In that case, run `uv lock` to update the lockfile.
+>
+>   Using `--locked` is equivalent to running `uv lock --check` before syncing, because this
+>   command checks if the `uv` lockfile `uv.lock` is up-to-date. The error message is similar.
 
 - Run `ruff` for linting: `uv run ruff check .`
 - Run unit tests with `pytest` and measure code coverage with `coverage.py`: `uv run coverage run -m pytest`
